@@ -17,7 +17,7 @@
                     <h:selectOneMenu value="#{viewManager.currentView}">
                         <f:selectItems value="#{viewManager.viewNames}"/>
                     </h:selectOneMenu>
-                    <h:commandButton value="Change View" id="change_view"/>
+                    <h:commandButton value="Change View" action="#{viewManager.updateEmptyCurrentView}" id="change_view"/>
                 </p>
             </h:form>
             <h:form id="form2">

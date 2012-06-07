@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.html.HtmlDataTable;
 import org.jboss.as.controller.client.ModelControllerClient;
 import org.jboss.dmr.ModelNode;
 
@@ -62,24 +63,41 @@ public class ViewManager {
     }
 
     private String currentView = null;
-    private ViewTable viewTable;
+    private HtmlDataTable viewTable;
+    private Map<String, String> viewNames;
 
     public ViewManager() throws IOException {
-        Map<String, String> viewNames = getViewNames();
+        viewNames = getViewNames();
         if (viewNames.size() > 0) setCurrentView(viewNames.keySet().iterator().next());
-        this.viewTable = new ViewTable(this.currentView);
+
+        if (!isViewNamesEmpty()) this.viewTable = new ViewTable(this.currentView);
     }
 
     public String getCurrentView() {
         return this.currentView;
     }
 
+    public void updateEmptyCurrentView() throws IOException {
+        System.out.println("CALLED updateEmptyCurrentView");
+        System.out.println("currentView=" + currentView);
+        if (!isViewNamesEmpty() &&
+            (currentView != null) &&
+            !currentView.equals("") &&
+            (!(viewTable instanceof ViewTable))) {
+            System.out.println("UPDATING VIEWTABLE");
+            this.currentView = viewNames.keySet().iterator().next();
+            this.viewTable = new ViewTable(currentView);
+        }
+    }
+
     public final void setCurrentView(String currentView) throws IOException {
         String oldView = this.currentView;
         this.currentView = currentView;
 
+        if (!(this.viewTable instanceof ViewTable)) return;
+
         if (this.viewTable != null && !currentView.equals(oldView)) {
-            this.viewTable.update(this.currentView);
+            ((ViewTable)this.viewTable).update(this.currentView);
         }
     }
 
@@ -89,22 +107,36 @@ public class ViewManager {
         for (ModelNode name : result.get("result").asList()) {
             names.put(name.asString(), name.asString());
         }
+
+        this.viewNames = names;
+
         return names;
     }
 
+    public boolean isViewNamesEmpty() {
+        return (this.viewNames == null) || (this.viewNames.isEmpty());
+    }
+
     public void saveChanges() throws IOException {
-        this.viewTable.update(this.currentView);
+        if (!(this.viewTable instanceof ViewTable)) return;
+
+        ((ViewTable)this.viewTable).update(this.currentView);
     }
 
     public boolean isEditableView() {
-        return this.viewTable.hasWriteableColumns();
+        if (isViewNamesEmpty()) return false;
+        if (!(this.viewTable instanceof ViewTable)) return false;
+
+        return ((ViewTable)this.viewTable).hasWriteableColumns();
     }
 
-    public ViewTable getViewTable() {
+    public HtmlDataTable getViewTable() {
+        if (isViewNamesEmpty()) return new HtmlDataTable();
+
         return this.viewTable;
     }
 
-    public void setViewTable(ViewTable viewTable) {
+    public void setViewTable(HtmlDataTable viewTable) {
         this.viewTable = viewTable;
     }
 
