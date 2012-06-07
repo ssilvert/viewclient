@@ -77,14 +77,13 @@ public class ViewManager {
         return this.currentView;
     }
 
+    // action method to fill in currentView and create new ViewTable
+    // if state goes from "no views defined" to "one or more views defined"
     public void updateEmptyCurrentView() throws IOException {
-        System.out.println("CALLED updateEmptyCurrentView");
-        System.out.println("currentView=" + currentView);
         if (!isViewNamesEmpty() &&
             (currentView != null) &&
             !currentView.equals("") &&
             (!(viewTable instanceof ViewTable))) {
-            System.out.println("UPDATING VIEWTABLE");
             this.currentView = viewNames.keySet().iterator().next();
             this.viewTable = new ViewTable(currentView);
         }
