@@ -1,0 +1,94 @@
+/*
+    Document   : viewtable
+    Created on : Jun 6, 2012, 2:50:18 PM
+    Author     : ssilvert
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/*
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root {
+
+    background-color: teal;
+}
+
+.root {
+    border-right-style: solid;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-top-style: solid;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+    border-right-color: black;
+    border-left-color: black;
+    border-bottom-color: black;
+    border-top-color: black;
+}
+
+.header {
+    text-align: center;
+    font-weight: bold;
+    margin-right: 2px;
+    margin-left: 2px;
+    margin-bottom: 2px;
+    margin-top: 2px;
+    padding-right: 2px;
+    padding-left: 2px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    background-color: white;
+}
+
+.attrColumn {
+    text-align: center;
+    vertical-align: middle;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-top-style: solid;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    background-color: yellow;
+    border-right-color: black;
+    border-left-color: black;
+    border-bottom-color: black;
+    border-top-color: black;
+}
+
+.addressColumn {
+    text-align: center;
+    vertical-align: middle;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-top-style: solid;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-right: 2px;
+    margin-left: 2px;
+    margin-bottom: 2px;
+    margin-top: 2px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    background-color: white;
+}

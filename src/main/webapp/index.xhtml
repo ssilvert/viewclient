@@ -1,0 +1,34 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <h:outputStylesheet name="viewtable.css" library="css"/>
+    </h:head>
+    <body>
+        <h3>Custom Views</h3>
+        <f:view>
+            <h:form id="form1">
+
+                <p>
+                    <h:selectOneMenu value="#{viewManager.currentView}">
+                        <f:selectItems value="#{viewManager.viewNames}"/>
+                    </h:selectOneMenu>
+                    <h:commandButton value="Change View" id="change_view"/>
+                </p>
+            </h:form>
+            <h:form id="form2">
+                <hr/>
+                <p>
+                    <h:commandButton value="Save Changes" rendered="#{viewManager.editableView}" action="#{viewManager.saveChanges}" id="save_changes"/>
+                </p>
+                <h:dataTable binding="#{viewManager.viewTable}"/>
+
+            </h:form>
+        </f:view>
+
+    </body>
+</html>
